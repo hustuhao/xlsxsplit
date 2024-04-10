@@ -1,12 +1,13 @@
 package cmd
 
 import (
-	"github.com/charmbracelet/lipgloss"
 	"os"
 
-	"github.com/metafates/go-template/app"
-	"github.com/metafates/go-template/color"
-	"github.com/metafates/go-template/where"
+	"github.com/charmbracelet/lipgloss"
+
+	"github.com/metafates/xlsxsplit/app"
+	"github.com/metafates/xlsxsplit/color"
+	"github.com/metafates/xlsxsplit/where"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )

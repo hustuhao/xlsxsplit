@@ -2,17 +2,17 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/charmbracelet/log"
-	"github.com/metafates/go-template/style"
 	"os"
 	"strings"
 
+	"github.com/charmbracelet/log"
+	"github.com/metafates/xlsxsplit/style"
+
 	cc "github.com/ivanpirog/coloredcobra"
-	"github.com/metafates/go-template/app"
-	"github.com/metafates/go-template/filesystem"
-	"github.com/metafates/go-template/icon"
-	"github.com/metafates/go-template/where"
-	"github.com/samber/lo"
+	"github.com/metafates/xlsxsplit/app"
+	"github.com/metafates/xlsxsplit/filesystem"
+	"github.com/metafates/xlsxsplit/icon"
+	"github.com/metafates/xlsxsplit/where"
 	"github.com/spf13/cobra"
 )
 
@@ -26,9 +26,12 @@ var rootCmd = &cobra.Command{
 	Short: app.DescriptionShort,
 	Long:  app.DescriptionLong,
 	Run: func(cmd *cobra.Command, args []string) {
-		if lo.Must(cmd.Flags().GetBool("version")) {
-			versionCmd.Run(versionCmd, args)
+		// 参数为空则提示帮助信息
+		if len(args) == 0 {
+			_ = cmd.Help()
+			return
 		}
+		splitCmd.Run(cmd, args)
 	},
 }
 

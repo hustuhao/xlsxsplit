@@ -2,7 +2,7 @@ package style
 
 import (
 	"github.com/charmbracelet/lipgloss"
-	"github.com/metafates/go-template/color"
+	"github.com/metafates/xlsxsplit/color"
 )
 
 var (

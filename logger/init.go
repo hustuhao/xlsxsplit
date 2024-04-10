@@ -3,16 +3,17 @@ package logger
 import (
 	"errors"
 	"fmt"
-	"github.com/charmbracelet/log"
-	"github.com/spf13/viper"
+	"io"
 	"os"
 	"path/filepath"
 	"time"
 
-	"github.com/metafates/go-template/filesystem"
-	"github.com/metafates/go-template/key"
-	"github.com/metafates/go-template/where"
+	"github.com/charmbracelet/log"
+	"github.com/metafates/xlsxsplit/filesystem"
+	"github.com/metafates/xlsxsplit/key"
+	"github.com/metafates/xlsxsplit/where"
 	"github.com/samber/lo"
+	"github.com/spf13/viper"
 )
 
 func Init() error {
@@ -33,16 +34,20 @@ func Init() error {
 		return err
 	}
 
-	logger := log.NewWithOptions(logFile, log.Options{
+	// if you want to write to a file and stdout, use this: multiWriter := io.MultiWriter(os.Stdout, logFile)
+	multiWriter := io.MultiWriter(logFile)
+	logger := log.NewWithOptions(multiWriter, log.Options{
 		TimeFormat:      time.TimeOnly,
 		ReportTimestamp: true,
 		ReportCaller:    viper.GetBool(key.LogsReportCaller),
 	})
 
-	level := log.ParseLevel(key.LogsLevel)
+	level, err := log.ParseLevel(viper.GetString(key.LogsLevel))
+	if err != nil {
+		log.Fatal(err)
+	}
 	logger.SetLevel(level)
 
 	log.SetDefault(logger)
-
 	return nil
 }

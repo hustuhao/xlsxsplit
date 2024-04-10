@@ -1,12 +1,13 @@
 package main
 
 import (
-	"github.com/charmbracelet/log"
-	"github.com/metafates/go-template/cmd"
-	"github.com/metafates/go-template/config"
-	"github.com/metafates/go-template/logger"
-	"github.com/samber/lo"
 	"os"
+
+	"github.com/charmbracelet/log"
+	"github.com/metafates/xlsxsplit/cmd"
+	"github.com/metafates/xlsxsplit/config"
+	"github.com/metafates/xlsxsplit/logger"
+	"github.com/samber/lo"
 )
 
 func handlePanic() {

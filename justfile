@@ -14,4 +14,4 @@ update:
     go mod tidy -v
 
 rename new-go-mod:
-    find . -type f -not -path './.git/*' -exec sed -i '' -e "s|{{go-mod}}|{{new-go-mod}}|g" {} \;
+    find . -type f -not -path './.git/*' -exec sed -i '' -e "s|{{new-go-mod}}|{{new-go-mod}}|g" {} \;

@@ -3,21 +3,21 @@ package config
 import (
 	"strings"
 
-	"github.com/metafates/go-template/app"
-	"github.com/metafates/go-template/filesystem"
-	"github.com/metafates/go-template/where"
+	"github.com/metafates/xlsxsplit/app"
+	"github.com/metafates/xlsxsplit/filesystem"
+	"github.com/metafates/xlsxsplit/where"
 	"github.com/spf13/viper"
 )
 
-// ConfigFormat is the format of the config file
+// Format is the format of the config file
 // Available options are: json, yaml, toml
-const ConfigFormat = "toml"
+const Format = "toml"
 
 var EnvKeyReplacer = strings.NewReplacer(".", "_")
 
 func Init() error {
 	viper.SetConfigName(app.Name)
-	viper.SetConfigType(ConfigFormat)
+	viper.SetConfigType(Format)
 	viper.SetFs(filesystem.Api())
 	viper.AddConfigPath(where.Config())
 	viper.SetTypeByDefaultValue(true)

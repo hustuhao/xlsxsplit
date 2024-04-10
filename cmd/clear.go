@@ -2,14 +2,15 @@ package cmd
 
 import (
 	"fmt"
+
 	"github.com/charmbracelet/lipgloss"
 
-	"github.com/metafates/go-template/app"
-	"github.com/metafates/go-template/color"
-	"github.com/metafates/go-template/filesystem"
-	"github.com/metafates/go-template/icon"
-	"github.com/metafates/go-template/util"
-	"github.com/metafates/go-template/where"
+	"github.com/metafates/xlsxsplit/app"
+	"github.com/metafates/xlsxsplit/color"
+	"github.com/metafates/xlsxsplit/filesystem"
+	"github.com/metafates/xlsxsplit/icon"
+	"github.com/metafates/xlsxsplit/util"
+	"github.com/metafates/xlsxsplit/where"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 )

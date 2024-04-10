@@ -5,7 +5,7 @@ const Version = "0.0.1"
 
 const (
 	// App is the name of the application
-	Name = "app"
+	Name = "xlsxsplit"
 
 	// DescriptionShort short description of the app
 	DescriptionShort = Name + " description"

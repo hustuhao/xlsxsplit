@@ -3,22 +3,23 @@ package cmd
 import (
 	"errors"
 	"fmt"
-	"github.com/charmbracelet/lipgloss"
-	"github.com/metafates/go-template/style"
 	"os"
 	"path/filepath"
 	"sort"
 	"strconv"
 
-	"github.com/metafates/go-template/app"
+	"github.com/charmbracelet/lipgloss"
+	"github.com/metafates/xlsxsplit/style"
+
+	"github.com/metafates/xlsxsplit/app"
 	"golang.org/x/exp/slices"
 
 	levenshtein "github.com/ka-weihe/fast-levenshtein"
-	"github.com/metafates/go-template/color"
-	"github.com/metafates/go-template/config"
-	"github.com/metafates/go-template/filesystem"
-	"github.com/metafates/go-template/icon"
-	"github.com/metafates/go-template/where"
+	"github.com/metafates/xlsxsplit/color"
+	"github.com/metafates/xlsxsplit/config"
+	"github.com/metafates/xlsxsplit/filesystem"
+	"github.com/metafates/xlsxsplit/icon"
+	"github.com/metafates/xlsxsplit/where"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -188,8 +189,13 @@ var configEnvCmd = &cobra.Command{
 		fields := lo.Values(config.Default)
 		fields = append(fields, &config.Field{Key: where.EnvConfigPath})
 
-		slices.SortFunc(fields, func(a, b *config.Field) bool {
-			return a.Key < b.Key
+		slices.SortFunc(fields, func(a, b *config.Field) int {
+			if a.Key < b.Key {
+				return -1
+			} else if a.Key > b.Key {
+				return 1
+			}
+			return 0
 		})
 
 		for _, field := range fields {
@@ -222,7 +228,7 @@ var configWriteCmd = &cobra.Command{
 			force          = lo.Must(cmd.Flags().GetBool("force"))
 			configFilePath = filepath.Join(
 				where.Config(),
-				fmt.Sprintf("%s.%s", app.Name, config.ConfigFormat),
+				fmt.Sprintf("%s.%s", app.Name, config.Format),
 			)
 		)
 
@@ -254,7 +260,7 @@ var configDeleteCmd = &cobra.Command{
 	Short:   "Delete the config file",
 	Aliases: []string{"remove"},
 	Run: func(cmd *cobra.Command, args []string) {
-		configFilePath := filepath.Join(where.Config(), fmt.Sprintf("%s.%s", app.Name, config.ConfigFormat))
+		configFilePath := filepath.Join(where.Config(), fmt.Sprintf("%s.%s", app.Name, config.Format))
 
 		exists, err := filesystem.Api().Exists(configFilePath)
 		handleErr(err)

@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/metafates/go-template/key"
+	"github.com/metafates/xlsxsplit/key"
 	"github.com/spf13/viper"
 )
 

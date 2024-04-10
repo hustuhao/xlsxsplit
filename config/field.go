@@ -2,17 +2,18 @@ package config
 
 import (
 	"fmt"
-	"github.com/charmbracelet/lipgloss"
 	"reflect"
 	"strconv"
 	"strings"
 	"text/template"
 
-	"github.com/metafates/go-template/app"
+	"github.com/charmbracelet/lipgloss"
+
+	"github.com/metafates/xlsxsplit/app"
 	"github.com/samber/lo"
 	"github.com/spf13/viper"
 
-	"github.com/metafates/go-template/color"
+	"github.com/metafates/xlsxsplit/color"
 )
 
 type Field struct {

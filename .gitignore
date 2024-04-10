@@ -1,5 +1,5 @@
 # Compiled app
-go-template
+xlsxsplit
 
 #########
 # macOS #
@@ -115,3 +115,8 @@ $RECYCLE.BIN/
 #############
 
 .idea
+
+#############
+# outputs #
+#############
+output

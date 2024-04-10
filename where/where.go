@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/metafates/go-template/app"
+	"github.com/metafates/xlsxsplit/app"
 )
 
 func home() string {
