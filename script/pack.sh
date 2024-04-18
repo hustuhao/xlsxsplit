@@ -1,15 +1,17 @@
 #!/bin/bash
 
-PROJECT_NAME="xlsxsplit"
-VERSION=v0.0.2
-RELEASE_NAME="${PROJECT_NAME}"-"${VERSION}"
-OUTPUT_DIR="bin" # 打包目录
+# Fixed parameters
+PROJECT_NAME="xlsxsplit" # Project name
+VERSION=v0.0.2           # Version
 
-# 平台和架构数组
+RELEASE_NAME="${PROJECT_NAME}"-"${VERSION}" # Release name
+OUTPUT_DIR="bin" # Output directory
+
+# Platforms and architectures array
 PLATFORMS=("linux" "windows" "darwin")
 ARCHITECTURES=("amd64" "arm64")
 
-# 编译不同平台的应用
+# Compile the application for different platforms
 for PLATFORM in "${PLATFORMS[@]}"
 do
     for ARCH in "${ARCHITECTURES[@]}"
@@ -19,15 +21,16 @@ do
     done
 done
 
-# 创建一个压缩文件
+# Create a tar compression file
 echo "Creating release package..."
 RELEASE_TAR="${RELEASE_NAME}.tar.gz"
 tar -czvf "${RELEASE_TAR}" -C ${OUTPUT_DIR} .
 
+# Create a zip compression file
 RELEASE_ZIP="${RELEASE_NAME}.zip"
 zip -r "${RELEASE_ZIP}" ${OUTPUT_DIR}/*
 
-# 清理临时文件
+# Clean up temporary files
 echo "Cleaning up..."
 #rm -rf ${OUTPUT_DIR}
 #rm "${RELEASE_TAR}"
