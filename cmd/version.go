@@ -77,7 +77,7 @@ var versionCmd = &cobra.Command{
 var splitCmd = &cobra.Command{
 	Use:     "split",
 	Short:   "Split xlsx file into multiple files",
-	Example: "splitxlsx split examples.xlsx",
+	Example: "splitxlsx -f examples.xlsx",
 	Run: func(cmd *cobra.Command, args []string) {
 		xlsxFile := file
 		// Open the xlsx file
